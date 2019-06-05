@@ -17,6 +17,7 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"github.com/knative/pkg/apis"
 	duckv1beta1 "github.com/knative/pkg/apis/duck/v1beta1"
 	"github.com/knative/pkg/kmeta"
 	corev1 "k8s.io/api/core/v1"
@@ -39,7 +40,10 @@ type ContainerSource struct {
 }
 
 var (
-	// Check that ContainerSource can be validated and can be defaulted.
+	// Check that ContainerSource can be validated.
+	_ apis.Validatable = (*ContainerSource)(nil)
+
+	// Check that ContainerSource is a runtime object.
 	_ runtime.Object = (*ContainerSource)(nil)
 
 	// Check that we can create OwnerReferences to a ContainerSource.
